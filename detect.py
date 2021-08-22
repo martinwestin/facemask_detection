@@ -20,7 +20,7 @@ def main():
             face_img = frame[y:y + h, x:x + w]
             face_img = cv.cvtColor(face_img, cv.COLOR_BGR2RGB)
             resized = cv.resize(face_img, (data.IMG_SIZE, data.IMG_SIZE))
-            reshaped = resized.reshape(1, data.IMG_SIZE, data.IMG_SIZE) / 255
+            reshaped = resized.reshape(1, data.IMG_SIZE, data.IMG_SIZE, 3) / 255
             result = model.model.predict(reshaped)
             index = np.argmax(result[0])
             cv.rectangle(frame, (x, y), (x + w, y + h), color_dict[index], 2)
