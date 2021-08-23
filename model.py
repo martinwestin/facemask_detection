@@ -12,15 +12,15 @@ model = tf.keras.models.load_model("model.h5")
 def new_model(train_x: np.ndarray, train_y: np.ndarray, val_x: np.ndarray, val_y: np.ndarray):
     model = tf.keras.models.Sequential()
 
-    model.add(tf.keras.layers.Conv2D(200, (3, 3), activation="relu",
+    model.add(tf.keras.layers.Conv2D(256, (3, 3), activation="relu",
                                      input_shape=(data.IMG_SIZE, data.IMG_SIZE, 3)))
     model.add(tf.keras.layers.MaxPooling2D((2, 2)))
-    model.add(tf.keras.layers.Conv2D(100, (3, 3), activation="relu"))
+    model.add(tf.keras.layers.Conv2D(256, (3, 3), activation="relu"))
     model.add(tf.keras.layers.MaxPooling2D((2, 2)))
 
     model.add(tf.keras.layers.Flatten())
     model.add(tf.keras.layers.Dropout(0.5))
-    model.add(tf.keras.layers.Dense(50, activation="relu"))
+    model.add(tf.keras.layers.Dense(64, activation="relu"))
     model.add(tf.keras.layers.Dense(2, activation="softmax"))
 
     model.compile(optimizer="adam",
